@@ -13,7 +13,7 @@ with open('election_data.csv', newline='') as csvfile:
     winner_name = 0
     winner = ""
     candidate_percent = {}
-    
+    votes_candidates = []
    
 
     vote = csv.DictReader(csvfile)
@@ -43,9 +43,25 @@ for name, vote_count in candidate_votes.items():
 print (" -----Election Results----- \n")
 print (f"Total Votes : {total_votes}\n")
 
-print(f"{name}")
 for candidate in candidate_votes:
-    print (f"Percent of each candidate: {candidate} {candidate_percent[candidate]}\n" )
-    print (f"Vote Count : {vote_count}")
+     print (f"Percent of each candidate: {candidate} : {candidate_percent[candidate]}, {candidate_votes[candidate]}\n")
+   
+    
 print (f"Winner: {winner}\n")
 
+poll_datas_output = "poll_datas.txt"
+with open(poll_datas_output, "w") as txt_file:
+
+     txt_file.write(
+          " -----Election Results----- \n"
+          f"Total Votes : {total_votes}\n"
+          )
+     for candidate in candidate_votes:
+          txt_file.write(
+         
+          f"Percent of each candidate: {candidate} : {candidate_percent[candidate]}, {candidate_votes[candidate]}\n")
+     
+     txt_file.write(
+          
+          f"Winner: {winner}\n"
+               )
